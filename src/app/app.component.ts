@@ -20,6 +20,13 @@ export class AppComponent {
   num9: number = 0;
   num10: number = 0;
 
+  num1s: number = 0;
+  num2s: number = 0;
+  num3s: number = 0;
+  num4s: number = 0;
+  num5s: number = 0;
+  num6s: number = 0;
+
   Mensagem: string = '';
 
   onClickComparar() {
@@ -36,19 +43,34 @@ export class AppComponent {
       this.num10,
     ];
 
-    const filteredNums = nums.filter((num) => num !== 0);
+    const sorteados = [
+      this.num1s,
+      this.num2s,
+      this.num3s,
+      this.num4s,
+      this.num5s,
+      this.num6s,
+    ];
 
-    if (filteredNums.length < 6) {
+    const numsInseridos = nums.filter((num) => num !== 0);
+    const numsSorteados = sorteados.filter((sorte) => sorte !== 0);
+
+    if (numsInseridos.length < 6) {
       this.Mensagem = 'Por favor, insira pelo menos 6 números.';
-    } else if (filteredNums.some((num) => num > 60)) {
+    } else if (
+      numsInseridos.some((num) => num > 60) ||
+      numsSorteados.some((sorte) => sorte > 60)
+    ) {
       this.Mensagem =
         ' Os números não podem ser menores que 1 ou maiores que 60.';
-    } else if (new Set(filteredNums).size !== filteredNums.length) {
+    } else if (
+      new Set(numsInseridos).size !== numsInseridos.length ||
+      new Set(numsSorteados).size !== numsSorteados.length
+    ) {
       this.Mensagem = 'Os números não podem ser iguais.';
     } else {
-      const validNumbers = [1, 6, 10, 30, 42, 50];
-      const validNums = filteredNums.filter((num) =>
-        validNumbers.includes(num)
+      const validNums = numsInseridos.filter((num) =>
+        numsSorteados.includes(num)
       );
 
       if (validNums.length > 0) {
