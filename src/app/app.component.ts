@@ -73,10 +73,23 @@ export class AppComponent {
         numsSorteados.includes(num)
       );
 
-      if (validNums.length > 0) {
-        this.Mensagem = `Você acertou esses números: ${validNums.join(', ')}`;
+      if (validNums.length === 6) {
+        this.Mensagem = `Você acertou todos os números. PARABÉNS!!`;
+      } else if (validNums.length === 5) {
+        this.Mensagem = `Você acertou a QUINA! PARABÉNS!! ${validNums.join(
+          ', '
+        )}`;
+      } else if (validNums.length === 4) {
+        this.Mensagem = `Você acertou a QUADRA! PARABÉNS!! ${validNums.join(
+          ', '
+        )}`;
+      } else if (validNums.length > 0 && validNums.length < 4) {
+        this.Mensagem = `Você não acertou números suficientes. Na próxima você consegue! ${validNums.join(
+          ', '
+        )}`;
       } else {
-        this.Mensagem = 'Não acertou nenhum número. Boa sorte na próxima!';
+        this.Mensagem =
+          'Infelizmente você não acertou nenhum número. Boa sorte na próxima!';
       }
     }
   }
